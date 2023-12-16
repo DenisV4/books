@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=book_db
+    volumes:
+      - ./init-schema.sql:/docker-entrypoint-initdb.d/init-schema.sql
+
+  redis:
+    image: redis:7.2.3
+    ports:
+      - "6379:6379"
